@@ -27,12 +27,19 @@ public class BerTlvs {
         return list;
     }
 
-
     public List<BerTlv> getList() {
         return tlvs;
     }
 
     private final List<BerTlv> tlvs;
+
+    public void clearBuffer() {
+        if (tlvs != null && tlvs.size() > 0) {
+            for (BerTlv tlv : tlvs) {
+                tlv.clearBuffer();
+            }
+        }
+    }
 
     @Override
     public boolean equals(Object o) {

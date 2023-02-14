@@ -142,6 +142,22 @@ public class BerTlv {
         return theList;
     }
 
+    public void clearBuffer() {
+        if (theValue != null && theValue.length > 0) {
+            Arrays.fill(theValue, (byte) 0x00);
+            Arrays.fill(theValue, (byte) 0xff);
+            Arrays.fill(theValue, (byte) 0x00);
+        }
+        if (theTag != null) {
+            theTag.clearBuffer();
+        }
+        if (theList != null && theList.size() > 0) {
+            for (BerTlv item : theList) {
+                item.clearBuffer();
+            }
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
